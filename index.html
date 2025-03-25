@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTM Test - Course Purchase</title>
+
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T2M67WV2');</script>
+<!-- End Google Tag Manager -->
+
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        .btn { background: #28a745; color: white; padding: 15px 20px; border: none; cursor: pointer; font-size: 18px; }
+        .btn:hover { background: #218838; }
+        #thank-you { display: none; font-size: 20px; color: #28a745; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T2M67WV2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <!-- End Google Tag Manager (noscript) -->
+
+    <h1>Test GTM Purchase Events</h1>
+
+    <!-- Buy Now Button -->
+    <button id="buy-button" class="btn">Buy Now</button>
+
+    <div id="thank-you">
+        ✅ Purchase Complete! Thank you for your order.
+    </div>
+
+    <script>
+        // Simulating Buy Button Click Event
+        document.getElementById("buy-button").addEventListener("click", function() {
+            console.log("Buy Button Clicked - Sending Event to GTM");
+
+            // Push event to GTM Data Layer
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'buy_button_click',
+                'product': 'Online Course',
+                'value': 49.99
+            });
+
+            // Simulate purchase completion after 3 seconds
+            setTimeout(function() {
+                document.getElementById("thank-you").style.display = "block";
+
+                // Push purchase event to GTM
+                window.dataLayer.push({
+                    'event': 'purchase_complete',
+                    'transaction_id': 'TXN' + Math.floor(Math.random() * 100000),
+                    'value': 49.99,
+                    'currency': 'USD'
+                });
+
+                console.log("Purchase Complete Event Sent to GTM");
+
+            }, 3000);
+        });
+    </script>
+
+</body>
+</html>
